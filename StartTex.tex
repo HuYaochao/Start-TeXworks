@@ -1,0 +1,246 @@
+% 注释
+\documentclass[UTF8]{ctexart} %中英文排版类，或其他文档类，如 report, book ，article等
+\usepackage{amsmath} %数学包
+\usepackage{graphicx} %引入图片
+
+%注意，文件（包括 .tex, .jpg 等）用英文，否则易报错
+
+\usepackage{geometry} % 设置页边距
+\geometry{papersize={20cm,15cm}}
+\geometry{left=1cm,right=2cm,top=3cm,bottom=4cm}
+
+\usepackage{fancyhdr} %设置 页眉页脚
+\pagestyle{fancy}
+\lhead{\author}
+\chead{\date}
+\rhead{152xxxxxxxx}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headwidth}{\textwidth}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{setspace}%行间距
+\onehalfspacing %将行距设置为字号的 1.5 倍：
+
+\addtolength{\parskip}{.4em} %段间距
+
+
+
+ \usepackage{xeCJK}  % 中文字体扩展管理宏包，务必添加！！
+
+\setCJKfamilyfont{ceyy } {站酷仓耳渔阳体-W02.ttf}
+\newcommand{  \ceyy } {  \CJKfamily{ceyy } } %创建新字体调用命令
+
+\title{标题}
+\author{作者}
+\date{\today}    %不用日期把\today，去掉即可，\date{} ，你也可以手动输入日期
+
+
+\begin{document} %内容开头   ， \end{document}结尾，其他地方的内容不会输出
+
+\ceyy  %调用字体
+
+
+
+%之上的部分被称为导言区，设置页面大小、页眉页脚样式、章节标题样式等等。
+
+\maketitle %生成标题页
+\tableofcontents  %目录
+
+
+
+
+\section{一级标题}
+内容 内容 内容 内容  \% %打印百分号，需用\转义
+\subsection{二级标题}
+内容内容内容
+\subsubsection{三级标题}
+
+
+\paragraph{（第一）段落标题}
+这是段落标题对应的内容。这个内容会直接跟在段落标题后面，而不是在标题下方。
+
+\subparagraph{（第二）段落标题}
+这是段落二标题对应的内容
+
+
+\section{数学}
+
+%行内
+Einstein 's $E=m_1c^2$.  %_下标，数字5。^上标，数字6
+
+%%^默认只作用于之后的一个字符，如果想对连续的几个字符起作用，请将这些字符用花括号 {} 括起来，例如：
+
+%$$ ... $$ 来插入不编号的行间公式。但是在 LaTeX 中这样做会改变行文的默认行间距，不推荐。
+
+\[ z = r\cdot e^{2\pi i}. \]
+
+%行间，自动居中
+\[ E=mc^3. \]
+
+%加序号，equation，行间
+\begin{equation}
+E=mc^4.
+\end{equation}
+
+%不加序号，equation*，行间
+\begin{equation*}
+E=mc^5.
+\end{equation*}
+
+
+\subsection{根式与分式}
+
+%根式用 \sqrt{·} 来表示，分式用 \frac{·}{·} 来表示（第一个参数为分子，第二个为分母）。
+$\sqrt{x}$, $\frac{1}{2}$.
+
+
+%可以发现，在行间公式和行内公式中，分式的输出效果是有差异的。如果要强制行内模式的分式显示为行间模式的大小，可以使用 \dfrac, 反之可以使用 \tfrac。
+$\sqrt{x}$, $\tfrac{1}{2}$.
+
+\[ \tfrac{1}{2}. \]
+
+
+\subsection{运算符}
+
++-*/
+\[ \pm\; \times \; \div\; \cdot\; \cap\; \cup\;
+\geq\; \leq\; \neq\; \approx \; \equiv \]
+
+%连加、连乘、极限、积分等大型运算符分别用 \sum, \prod, \lim, \int 生成。他们的上下标在行内公式中被压缩，以适应行高。我们可以用 \limits 和 \nolimits 来强制显式地指定是否压缩这些上下标。例如：
+
+%\quad 是一个水平间距命令，用于在文本中插入一个固定宽度的水平空格。这个空格的宽度大约是当前字体大小的两倍。它通常用于在句子或单词之间创建额外的间距，使得文本更加易读或排版更美观。
+
+$ \sum_{i=1}^n i\quad \prod_{i=1}^n $
+$ \sum\limits _{i=1}^n i\quad \prod\limits _{i=1}^n $
+\[ \lim_{x\to0}x^2 \quad \int_a^b x^2 dx \]
+\[ \lim\nolimits _{x\to0}x^2\quad \int\nolimits_a^b x^2 dx \]
+
+%多重积分可以使用 \iint, \iiint, \iiiint, \idotsint 等命令输入。
+\[ \iint\quad \iiint\quad \iiiint\quad \idotsint \]
+
+
+\subsection{定界符（括号等）}
+
+%各种括号用 (), [], \{\}, \langle\rangle 等命令表示；注意花括号通常用来输入命令和环境的参数，所以在数学公式中它们前面要加 \。因为 LaTeX 中 | 和 \| 的应用过于随意，amsmath 宏包推荐用 \lvert\rvert 和 \lVert\rVert 取而代之。
+
+%为了调整这些定界符的大小，amsmath 宏包推荐使用 \big, \Big, \bigg, \Bigg 等一系列命令放在上述括号前面调整大小。
+
+\[ \Biggl(\biggl(\Bigl(\bigl((x)\bigr)\Bigr)\biggr)\Biggr) \]
+\[ \Biggl[\biggl[\Bigl[\bigl[[x]\bigr]\Bigr]\biggr]\Biggr] \]
+\[ \Biggl \{\biggl \{\Bigl \{\bigl \{\{x\}\bigr \}\Bigr \}\biggr \}\Biggr\} \]
+\[ \Biggl\langle\biggl\langle\Bigl\langle\bigl\langle\langle x
+\rangle\bigr\rangle\Bigr\rangle\biggr\rangle\Biggr\rangle \]
+\[ \Biggl\lvert\biggl\lvert\Bigl\lvert\bigl\lvert\lvert x
+\rvert\bigr\rvert\Bigr\rvert\biggr\rvert\Biggr\rvert \]
+\[ \Biggl\lVert\biggl\lVert\Bigl\lVert\bigl\lVert\lVert x
+\rVert\bigr\rVert\Bigr\rVert\biggr\rVert\Biggr\rVert \]
+
+
+\subsection{省略号}
+
+%省略号用 \dots, \cdots, \vdots, \ddots 等命令表示。\dots 和 \cdots 的纵向位置不同，前者一般用于有下标的序列。
+
+\[ x_1,x_2,\dots ,x_n\quad 1,2,\cdots ,n\quad
+\vdots\quad \ddots \]
+
+\subsection{矩阵}
+
+\[ \begin{pmatrix} a&b\\c&d \end{pmatrix} \quad
+\begin{bmatrix} a&b\\c&d \end{bmatrix} \quad
+\begin{Bmatrix} a&b\\c&d \end{Bmatrix} \quad
+\begin{vmatrix} a&b\\c&d \end{vmatrix} \quad
+\begin{Vmatrix} a&b\\c&d \end{Vmatrix} \]
+
+%使用 smallmatrix 环境，可以生成行内公式的小矩阵。
+Marry has a little matrix $ ( \begin{smallmatrix} a&b\\c&d \end{smallmatrix} ) $.
+
+
+\subsection{多行公式}
+
+不对齐
+\begin{multline}
+x = a+b+c+{} \\
+d+e+f+g
+\end{multline}
+如果不需要编号，可以使用 multline* 环境代替。
+
+对齐
+
+\[\begin{aligned}
+x ={}& a+b+c+{} \\
+&d+e+f+g
+\end{aligned}\]
+
+公式组
+
+无需对齐的公式组可以使用 gather 环境，需要对齐的公式组可以使用 align 环境。他们都带有编号，如果不需要编号可以使用带星花的版本。
+
+\begin{gather}
+a = b+c+d \\
+x = y+z
+\end{gather}
+\begin{align}
+a &= b+c+d \\
+x &= y+z
+\end{align}
+
+分段函数
+
+分段函数可以用cases次环境来实现，它必须包含在数学环境之内。
+
+\[ y= \begin{cases}
+-x,\quad x\leq 0 \\
+x,\quad x>0
+\end{cases} \]
+
+
+\section{插入图片和表格}
+
+同级目录
+\includegraphics{a.jpg}
+
+%图片可能很大，超过了输出文件的纸张大小，或者干脆就是你自己觉得输出的效果不爽。这时候你可以用 \includegraphics 控制序列的可选参数来控制。比如
+
+\includegraphics[width = .8\textwidth]{a.jpg}
+
+这样图片的宽度会被缩放至页面宽度的百分之八十，图片的总高度会按比例缩放。
+
+\section{表格}
+
+%tabular 环境提供了最简单的表格功能。它用 \hline 命令表示横线，在列格式中用 | 表示竖线；用 & 来分列，用 \\ 来换行；每列可以采用居左、居中、居右等横向对齐方式，分别用 l、c、r 来表示。
+
+\begin{tabular}{|l|c|r|}
+ \hline
+操作系统& 发行版& 编辑器\\
+ \hline
+Windows & MikTeX & TexMakerX \\
+ \hline
+Unix/Linux & teTeX & Kile \\
+ \hline
+Mac OS & MacTeX & TeXShop \\
+ \hline
+通用& TeX Live & TeXworks \\
+ \hline
+\end{tabular}
+
+浮动体
+
+%插图和表格通常需要占据大块空间，所以在文字处理软件中我们经常需要调整他们的位置。figure 和 table 环境可以自动完成这样的任务；这种自动调整位置的环境称作浮动体(float)。我们以 figure 为例。
+
+%htbp 选项用来指定插图的理想位置，这几个字母分别代表 here, top, bottom, float page，也就是就这里、页顶、页尾、浮动页（专门放浮动体的单独页面或分栏）。\centering 用来使插图居中；\caption 命令设置插图标题，LaTeX 会自动给浮动体的标题加上编号。注意 \label 应该放在标题命令之后。
+\begin{figure}[htbp]
+\centering
+\includegraphics{a.jpg}
+\caption{有图有真相}
+\label{fig:myphoto}
+\end{figure}
+
+
+
+
+
+
+\end{document}
